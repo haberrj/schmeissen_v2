@@ -4,7 +4,7 @@
 # Date: 25.05.2021
 # A class for creating each individual card and forming the deck.
 
-import pygame 
+import random
 import os, sys
 
 class Card(object):
@@ -15,7 +15,7 @@ class Card(object):
     
     def assign_pic(self):
         '''Will assign a picture to the card based on its value and suit.
-        @return pic_name: A string representing the path to a pic for the given card.
+        @return pic_name: A string representing the path to a pic for the given card.a
         '''
         # Come up with some way to reference pics here
         pic_name = str(self.value) + '_' + self.suit + '.png'
@@ -25,6 +25,7 @@ class Deck(object):
     def __init__(self):
         self.length = 0
         self.cards = []
+        self.create_deck()
 
     def create_deck(self):
         '''Will create the deck with 52 cards and initialize each individual card.
@@ -41,3 +42,16 @@ class Deck(object):
         @param num_of_cards: An integer representing the number of cards to deal.
         @return cards: A list representing the dealt cards
         '''
+        cards = []
+        for i in range(num_of_cards):
+            random_card = random.randint(0,self.length)
+            card_removed = self.cards.pop(random_card)
+            cards.append(card_removed)
+        return cards
+    
+    def getDeckSize(self):
+        return self.length
+
+    def getRemainingCards(self):
+        return self.cards
+
