@@ -41,13 +41,13 @@ class Deck(object):
         '''
         suits = ['clubs', 'spades', 'diamonds', 'hearts']
         for suit in suits:
-            for i in range(2,14):
+            for i in range(2,15): # J = 11, Q = 12, K = 13, A = 14
                 new_card = Card(i, suit)
                 self.cards.append(new_card)
                 self.length += 1
     
     def deal_cards(self, num_of_cards):
-        '''Will deal out cards to a given hand or pile
+        '''Will deal out random cards to a given hand or pile
         @param num_of_cards: An integer representing the number of cards to deal.
         @return cards: A list representing the dealt cards
         '''
@@ -55,6 +55,7 @@ class Deck(object):
         for i in range(num_of_cards):
             random_card = random.randint(0,self.length)
             card_removed = self.cards.pop(random_card)
+            self.length -= 1
             cards.append(card_removed)
         return cards
     
