@@ -20,6 +20,15 @@ class Card(object):
         # Come up with some way to reference pics here
         pic_name = str(self.value) + '_' + self.suit + '.png'
         return pic_name
+    
+    def getValue(self):
+        return self.value
+
+    def getSuit(self):
+        return self.suit
+
+    def getPicture(self):
+        return self.picture
 
 class Deck(object):
     def __init__(self):
@@ -55,3 +64,31 @@ class Deck(object):
     def getRemainingCards(self):
         return self.cards
 
+class Pile(object):
+    '''This will be the class defined for each pile (trash, centre, hand, etc.)
+    This is different than the deck in that this can only be specific sizes based on gameplay'''
+    def __init__(self):
+        self.cards = []
+        self.length = 0
+    
+    def add_cards(self, cards):
+        '''Will add cards to the specific pile.
+        @param cards: A list of class type Card for the cards to add
+        '''
+        for card in cards:
+            self.cards.append(card)
+            self.length += 1
+    
+    def play_cards(self, cards):
+        '''Will play specific cards from the pile.
+        @param cards: A list of the class type Card for the cards to play.
+        '''
+        for card in cards:
+            self.cards.remove(card)
+            self.length -= 1
+    
+    def getLength(self):
+        return self.length
+
+    def getCards(self):
+        return self.cards
